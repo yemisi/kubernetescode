@@ -1,0 +1,40 @@
+
+Installing ArgoCD on Minikube and deploying a test application
+https://medium.com/@mehmetodabashi/installing-argocd-on-minikube-and-deploying-a-test-application-caa68ec55fbf
+
+==========================================================================================================================================
+There are issues with the werkzeug library. Solution is to add library to requirements file
+Ref: https://stackoverflow.com/questions/77213053/importerror-cannot-import-name-url-quote-from-werkzeug-urls
+ImportError: cannot import name 'url_quote' from 'werkzeug.urls'
+
+ kubectl logs flaskdemo-5c55d86c78-8xdzw                                                                                                                                    ─╯
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.8/runpy.py", line 185, in _run_module_as_main
+    mod_name, mod_spec, code = _get_module_details(mod_name, _Error)
+  File "/usr/local/lib/python3.8/runpy.py", line 144, in _get_module_details
+    return _get_module_details(pkg_main_name, error)
+  File "/usr/local/lib/python3.8/runpy.py", line 111, in _get_module_details
+    __import__(pkg_name)
+  File "/usr/local/lib/python3.8/site-packages/flask/__init__.py", line 7, in <module>
+    from .app import Flask as Flask
+  File "/usr/local/lib/python3.8/site-packages/flask/app.py", line 27, in <module>
+    from . import cli
+  File "/usr/local/lib/python3.8/site-packages/flask/cli.py", line 17, in <module>
+    from .helpers import get_debug_flag
+  File "/usr/local/lib/python3.8/site-packages/flask/helpers.py", line 14, in <module>
+    from werkzeug.urls import url_quote
+ImportError: cannot import name 'url_quote' from 'werkzeug.urls' (/usr/local/lib/python3.8/site-packages/werkzeug/urls.py)
+
+
+==========================================================================================================================================
+
+Ref: https://stackoverflow.com/questions/55462654/access-minikube-loadbalancer-service-from-host-machine
+NOTE: Minikube support LoadBalancer services (via minikube tunnel)
+
+you can get the IP and port through which you can access the service by running
+
+minikube service kubia-http #=> To open a browser with an IP and port
+
+OR
+
+minikube service kubia --url #=> To get the IP and port in the terminal

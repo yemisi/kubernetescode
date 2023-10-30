@@ -10,6 +10,7 @@ node {
     stage('Build image') {
   
        app = docker.build("yemisiomonijo/test")
+       
     }
 
     stage('Test image') {
@@ -22,9 +23,7 @@ node {
 
     stage('Push image') {
         
-        docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
-            app.push("${env.BUILD_NUMBER}")
-        }
+        docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {app.push("${env.BUILD_NUMBER}")}
     }
     
     stage('Trigger ManifestUpdate') {
