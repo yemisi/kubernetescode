@@ -38,3 +38,8 @@ minikube service kubia-http #=> To open a browser with an IP and port
 OR
 
 minikube service kubia --url #=> To get the IP and port in the terminal
+
+==========================================================================================================================================
+minikube tunnel #before deploying loadbalancer service
+kubectl port-forward svc/argocd-server -n argocd 8080:443 #access argocd UI
+ minikube service lb-service --url #get loadbalancer IP and port
